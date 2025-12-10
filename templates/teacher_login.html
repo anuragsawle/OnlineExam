@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher Login</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; }
+        input { padding: 10px; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h2>Teacher Portal Login</h2>
+    {% if error %} <p class="error">{{ error }}</p> {% endif %}
+    <form action="/teacher_auth" method="POST">
+        <input type="password" name="password" placeholder="Enter Admin Password" required>
+        <button type="submit">Login</button>
+    </form>
+    <p><em>(Hint: Password is admin123)</em></p>
+</body>
+</html>

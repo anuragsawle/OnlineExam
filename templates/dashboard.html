@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher Dashboard</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #007bff; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>Student Performance Dashboard</h1>
+    <a href="/logout">Logout</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Test ID</th> <th>Student Name</th>
+                <th>Score</th>
+                <th>Total Questions</th>
+                <th>Date/Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in results %}
+            <tr>
+                <td>{{ row.id }}</td>
+                <td>{{ row.test_id }}</td> <td>{{ row.student_name }}</td>
+                <td>{{ row.score }}</td>
+                <td>{{ row.total_questions }}</td>
+                <td>{{ row.timestamp }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
