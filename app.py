@@ -6,9 +6,9 @@ app.secret_key = 'super_secret_key'  # Required for session management
 
 # --- Database Configuration ---
 db_config = {
-    'host': 'localhost',
+    'host': '192.168.1.236',
     'user': 'root',  # Change if your username is different
-    'password': 'password',  # <--- PUT YOUR MYSQL PASSWORD HERE
+    'password': 'root',  # <--- PUT YOUR MYSQL PASSWORD HERE
     'database': 'quiz_app'
 }
 
