@@ -6,9 +6,9 @@ app.secret_key = 'super_secret_key'  # Required for session management
 
 # --- Database Configuration ---
 db_config = {
-    'host': '192.168.1.236',
-    'user': 'root',  # Change if your username is different
-    'password': 'root',  # <--- PUT YOUR MYSQL PASSWORD HERE
+    'host': '192.168.31.236',
+    'user': 'Anurag',  # Change if your username is different
+    'password': 'Anurag@123',  # <--- PUT YOUR MYSQL PASSWORD HERE
     'database': 'quiz_app'
 }
 
@@ -51,9 +51,11 @@ def index():
 @app.route('/start_quiz', methods=['POST'])
 def start_quiz():
     name = request.form.get('student_name')
-    if not name:
+    student_class = request.form.get('student_class')
+    if not name or not student_class:
         return redirect(url_for('index'))
     session['student_name'] = name
+    session['student_class'] = student_class
     return redirect(url_for('quiz'))
 
 
@@ -82,12 +84,12 @@ def submit_quiz():
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    # UPDATED QUERY: Added test_id
+    # UPDATED QUERY: Added test_id and student_class
     query = """
-        INSERT INTO attempts (test_id, student_name, score, total_questions) 
-        VALUES (%s, %s, %s, %s)
+        INSERT INTO attempts (test_id, student_name, student_class, score, total_questions) 
+        VALUES (%s, %s, %s, %s, %s)
     """
-    cursor.execute(query, (CURRENT_TEST_ID, session['student_name'], score, len(QUESTIONS)))
+    cursor.execute(query, (CURRENT_TEST_ID, session['student_name'], session.get('student_class', 'Unknown'), score, len(QUESTIONS)))
 
     conn.commit()
     cursor.close()
@@ -135,4 +137,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')

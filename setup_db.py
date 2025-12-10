@@ -2,9 +2,9 @@ import mysql.connector
 from mysql.connector import errorcode
 
 db_config = {
-    'host': 'localhost',
-    'user': 'root', 
-    'password': 'password' 
+    'host': '192.168.31.236',
+    'user': 'Anurag', 
+    'password': 'Anurag@123' 
 }
 
 DB_NAME = 'quiz_app'
