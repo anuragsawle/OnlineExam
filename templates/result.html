@@ -1,18 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Results</title>
-    <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; }
-        .score { font-size: 2em; color: #28a745; font-weight: bold; }
-    </style>
-</head>
-<body>
-    <h1>Quiz Completed!</h1>
-    <p>Good job, {{ name }}.</p>
-    <p>Your Score:</p>
-    <div class="score">{{ score }} / {{ total }}</div>
-    <br>
-    <a href="/">Back to Home</a>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card" style="text-align: center;">
+    <h2 class="card-title">Quiz Results</h2>
+
+    <div style="margin: 2rem 0;">
+        <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1rem;">
+            Well done, <strong style="color: var(--text-main);">{{ name }}</strong>!
+        </p>
+
+        <div
+            style="display: inline-flex; flex-direction: column; align-items: center; justify-content: center; width: 150px; height: 150px; border-radius: 50%; background: var(--bg-body); border: 4px solid var(--primary-color);">
+            <span style="font-size: 3rem; font-weight: 700; color: var(--primary-color); line-height: 1;">{{ score
+                }}</span>
+            <span style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">out of {{ total }}</span>
+        </div>
+    </div>
+
+    <div style="margin-top: 2rem;">
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+            Your attempt has been recorded.
+        </p>
+        <a href="{{ url_for('logout') }}" class="btn btn-primary">Back to Home</a>
+    </div>
+</div>
+{% endblock %}
